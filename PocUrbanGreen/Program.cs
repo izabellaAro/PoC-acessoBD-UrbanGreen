@@ -1,5 +1,8 @@
-﻿using PocUrbanGreen;
-using PocUrbanGreen.Data;
+﻿using PocUrbanGreen.Data;
+using System.Configuration;
+
+var connectionString = ConfigurationManager.ConnectionStrings["cnx"].ConnectionString;
+var dataAcess = new DataAcess(connectionString);
 
 Console.WriteLine("// Fazenda Urban Green //\n");
 
@@ -19,7 +22,7 @@ void cadastroFornecedor()
     Console.WriteLine("Digite o e-mail do fornecedor: ");
     var emailFornc = Console.ReadLine();
 
-    DataAcess.CadastrarFornecedor(nomeFornc, cnpjFornc, emailFornc);
+    dataAcess.CadastrarFornecedor(nomeFornc, cnpjFornc, emailFornc);
     Console.Clear();
     Console.WriteLine("As informações foram salvas!");
 }
@@ -28,7 +31,7 @@ void listarFornecedores()
 {
     Console.Clear();
     Console.WriteLine("Aguarde! Realizando leitura de dados...\n");
-    DataAcess.ListarFornecedores();
+    dataAcess.ListarFornecedores();
 }
 
 void TrataOpcaoSelecionada(int opcaoEscolhida)

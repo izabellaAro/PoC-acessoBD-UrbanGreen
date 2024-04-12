@@ -4,9 +4,14 @@ namespace PocUrbanGreen.Data
 {
     public class DataAcess
     {
-        private static readonly string _connectionString = "Data Source=localhost;Database=BDUrbanGreen;Integrated Security=True";
+        private readonly string _connectionString;
 
-        public static void ListarFornecedores()
+        public DataAcess(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        public void ListarFornecedores()
         {
             using (var conn = new SqlConnection(_connectionString))
             {
@@ -27,7 +32,7 @@ namespace PocUrbanGreen.Data
             }
         }
 
-        public static void CadastrarFornecedor(string nome, string cnpj, string email)
+        public void CadastrarFornecedor(string nome, string cnpj, string email)
         {
             using (var conn = new SqlConnection(_connectionString))
             {
