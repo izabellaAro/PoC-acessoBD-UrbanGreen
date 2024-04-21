@@ -49,5 +49,45 @@ namespace PocUrbanGreen.Data
                 }
             }
         }
+
+        public void AtualizarFornecedor(int id, string nome, string cnpj, string email)
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                String sql = "UPDATE TBFornecedor SET [Nome] = @Nome, [CNPJ] = @CNPJ, [Email] = @Email WHERE [ID] = @ID";
+
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.Parameters.AddWithValue("@Nome", nome);
+                    command.Parameters.AddWithValue("@CNPJ", cnpj);
+                    command.Parameters.AddWithValue("@Email",email);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public bool ValidaFornecedorId(int id)
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                String sql = "SELECT [ID] = @ID FROM TBFornecedor WHERE [ID] = @ID ";
+
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.ExecuteNonQuery();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        return reader.HasRows;
+                    }
+                }
+            }
+        }
     }
 }
