@@ -56,6 +56,22 @@ void AtualizarFornecedor()
     Console.WriteLine("As atualizações foram realizadas!");
 }
 
+void ExcluirFornecedor()
+{
+    Console.Clear();
+    Console.Write("Qual o número ID do fornecedor que deseja excluir? ");
+    int idFornec = int.Parse(Console.ReadLine());
+    if (dataAcess.ValidaFornecedorId(idFornec) == false)
+    {
+        Console.WriteLine("O número ID informado é inválido.");
+        return;
+    }
+
+    dataAcess.ExcluirFornecedor(idFornec);
+    Console.Clear();
+    Console.WriteLine("Fornecedor excluido com sucesso!");
+}
+
 void TrataOpcaoSelecionada(int opcaoEscolhida)
 {
     if (opcaoEscolhida == 1)
@@ -68,6 +84,9 @@ void TrataOpcaoSelecionada(int opcaoEscolhida)
     }else if (opcaoEscolhida == 3)
     {
         AtualizarFornecedor();
+    }else if(opcaoEscolhida == 4)
+    {
+        ExcluirFornecedor();
     }
     else
     {

@@ -88,6 +88,22 @@ namespace PocUrbanGreen.Data
                     }
                 }
             }
+        } 
+
+        public void ExcluirFornecedor(int id)
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                String sql = "DELETE FROM TBFornecedor WHERE [ID] = @ID";
+
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
