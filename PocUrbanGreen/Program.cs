@@ -9,7 +9,28 @@ Console.WriteLine("// Fazenda Urban Green //\n");
 Console.WriteLine("Fornecedores: Digite 1 para cadastrar, 2 para listar, 3 para atualizar ou 4 para deletar");
 int opcaoEscolhida = int.Parse(Console.ReadLine());
 
-TrataOpcaoSelecionada(opcaoEscolhida);
+switch (opcaoEscolhida)
+{
+    case 1:
+        CadastroFornecedor();
+        break;
+
+    case 2:
+        ListarFornecedores();
+        break;
+
+    case 3:
+        AtualizarFornecedor();
+        break;
+
+    case 4:
+        ExcluirFornecedor();
+        break;
+
+    default:
+        Console.WriteLine("A opção escolhida é inválida!");
+        break;
+}
 
 void CadastroFornecedor()
 {
@@ -72,24 +93,3 @@ void ExcluirFornecedor()
     Console.WriteLine("Fornecedor excluido com sucesso!");
 }
 
-void TrataOpcaoSelecionada(int opcaoEscolhida)
-{
-    if (opcaoEscolhida == 1)
-    {
-        CadastroFornecedor();
-    }
-    else if (opcaoEscolhida == 2)
-    {
-        ListarFornecedores();
-    }else if (opcaoEscolhida == 3)
-    {
-        AtualizarFornecedor();
-    }else if(opcaoEscolhida == 4)
-    {
-        ExcluirFornecedor();
-    }
-    else
-    {
-        Console.WriteLine("A opção escolhida é inválida!");
-    }
-}
